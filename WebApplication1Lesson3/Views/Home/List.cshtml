@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebApplication1Lesson3.Models.UserTable>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserBirthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserMobilePhone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserSex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserBirthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserMobilePhone)
+            </td>
+            <td>
+                @Html.ActionLink("詳細資訊", "Details", new {_ID=item.UserId}) |
+                @Html.ActionLink("詳細資訊with Route", "Details", new {id=item.UserId}) 
+                <br>
+
+                <a asp-action="Details" asp-route-id="?_ID=item.UserID">Error詳細資訊with tag</a>
+                <a asp-action="Details" asp-route-_ID="@item.UserId">詳細資訊with tag</a>
+
+                @*<a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@using(Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <p>請輸入關鍵字，搜尋「UserName」欄位</p>
+    @Html.TextBox("_SearchWord")
+    <input type="submit" value="Search" />
+}
+
+@using (Html.BeginForm("Search2", "Home"))
+{
+    @Html.AntiForgeryToken()
+    <p>請輸入關鍵字，搜尋「UserName」欄位</p>
+    @Html.TextBox("_ID")
+    <input type="submit" value="Search" />
+}

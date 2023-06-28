@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApplication1Lesson3.Models.UserTable>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Search2";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["SW"] - Search Result</title>
+</head>
+
+<body>
+    <p>
+        @Html.ActionLink("Creat new data", "Create")
+        <h3>Search -- 您搜尋的關鍵字是 -- <font color="red"> @ViewData["SW"] </font></h3>
+    </p>
+
+    <table class="table"> 
+        <thead>
+            <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserSex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserBirthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserMobilePhone)
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.UserSex)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.UserBirthDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.UserMobilePhone)
+                </td>
+            </tr>
+        }
+        </tbody>
+        
+        
+    </table>
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model PaginatedList<WebApplication1Lesson3.Models.UserTable>
+
+@{
+    ViewData["Title"] = "IndexPage3";
+}
+
+<h1>IndexPage3</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                UserName
+            </th>
+            <th>
+                UserSex
+            </th>
+            <th>
+                UserBirthDay
+            </th>
+            <th>
+                UserMobilePhone
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserSex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserBirthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserMobilePhone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+  @* ************請自己動手加上  下面這一段 （需搭配根目錄底下的PaginatedList.cs） ******************************  *@
+    <hr />
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a href="/Home/IndexPage3?_ID=@(Model.PageIndex - 1)"
+       class="btn btn-default @prevDisabled">
+        Previous（上一頁）
+    </a>
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <a href="/Home/IndexPage3?_ID=@(Model.PageIndex + 1)"
+       class="btn btn-default @nextDisabled">
+        Next（下一頁）
+    </a>

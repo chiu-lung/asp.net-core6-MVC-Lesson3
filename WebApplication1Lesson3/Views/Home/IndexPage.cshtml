@@ -1,0 +1,103 @@
+﻿@model IEnumerable<WebApplication1Lesson3.Models.UserTable>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IndexPage</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserBirthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserMobilePhone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserSex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserBirthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserMobilePhone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@*<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="@Model.FirstOrDefault().UserName"></label>
+            </th>
+            <th>
+                <label asp-for="@Model.FirstOrDefault().UserSex"></label>
+            </th>
+            <th>
+                <label asp-for="@Model.FirstOrDefault().UserBirthDay"></label>
+            </th>
+            <th>
+                <label asp-for="@Model.FirstOrDefault().UserMobilePhone"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.UserName
+            </td>
+            <td>
+                @item.UserSex
+            </td>
+            <td>
+                @item.UserBirthDay
+            </td>
+            <td>
+                @item.UserMobilePhone
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>*@
+</body>
+</html>
